@@ -43,8 +43,8 @@ interface NewNote {
   content: string;
   tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
 }
-export const createNote = async (newNote: NewNote) => {
-  const response = await axios.post("/notes", newNote, {
+export const createNote = async (newNote: NewNote): Promise<Note> => {
+  const response = await axios.post<Note>("/notes", newNote, {
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`,
     },

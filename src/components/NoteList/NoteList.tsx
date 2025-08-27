@@ -4,10 +4,10 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteNote } from "../../services/noteService";
 import toast from "react-hot-toast";
 
-interface NoteList {
+interface NoteListProps {
   notes: Note[];
 }
-export default function NoteList({ notes }: NoteList) {
+export default function NoteList({ notes }: NoteListProps) {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({

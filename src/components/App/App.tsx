@@ -7,16 +7,19 @@ import { useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 import NoteForm from "../NoteForm/NoteForm";
 import { useDebouncedCallback } from "use-debounce";
-import Paginate from "../Pagination/Pagination";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import toast, { Toaster } from "react-hot-toast";
+import Pagination from "../Pagination/Pagination";
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [text, setText] = useState("");
-  const debounced = useDebouncedCallback(setText, 300);
+  const debounced = useDebouncedCallback((value: string) => {
+    setText(value);
+    setPage(1);
+  }, 300);
 
   const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ["notes", text, page],
@@ -35,7 +38,7 @@ export default function App() {
       <header className={css.toolbar}>
         <SearchBox text={text} onSearch={debounced} />
         {isSuccess && totalPages > 1 && (
-          <Paginate
+          <Pagination
             onPageChange={(selected) => setPage(selected + 1)}
             forcePage={page - 1}
             pageCount={totalPages}

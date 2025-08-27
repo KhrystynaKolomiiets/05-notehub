@@ -1,17 +1,17 @@
 import ReactPaginate from "react-paginate";
 import css from "./Pagination.module.css";
 
-interface PaginateProps {
+interface PaginationProps {
   onPageChange: (selectedPage: number) => void;
   pageCount: number;
   forcePage: number;
 }
 
-export default function Paginate({
+export default function Pagination({
   onPageChange,
   pageCount,
   forcePage,
-}: PaginateProps) {
+}: PaginationProps) {
   return (
     <ReactPaginate
       nextLabel="→"

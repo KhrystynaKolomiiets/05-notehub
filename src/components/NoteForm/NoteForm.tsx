@@ -11,7 +11,7 @@ const SignupSchema = Yup.object().shape({
     .min(3, "Title must be at least 3 characters")
     .max(50, "Too Long!")
     .required("Required"),
-  content: Yup.string().max(500, "Too Long!").required("Required"),
+  content: Yup.string().max(500, "Too Long!"),
   tag: Yup.string()
     .oneOf(["Todo", "Work", "Personal", "Meeting", "Shopping"])
     .required("Required"),
